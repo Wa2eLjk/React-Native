@@ -2,8 +2,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 22512,
-  "expoServerNgrokUrl": "https://3p-kjt.anonymous.finalproject.exp.direct",
-  "packagerNgrokUrl": "https://packager.3p-kjt.anonymous.finalproject.exp.direct",
-  "ngrokPid": 24764
+  "packagerPid": 24072,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
