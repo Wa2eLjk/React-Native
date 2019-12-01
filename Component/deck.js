@@ -1,10 +1,6 @@
-
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-
-import { removeDeck } from '../Utliz/api';
-
 import { connect } from 'react-redux';
 
 
@@ -12,7 +8,7 @@ import { connect } from 'react-redux';
 
 class Deck extends Component {
 
-  Delete = () => {
+  delete = () => {
     const key = this.props.navigation.state.params.Details.name
     this.props.navigation.state.params.Dele(key)
     // removeDeck(key)
@@ -31,14 +27,13 @@ class Deck extends Component {
 
     const DecksDets = this.props.entries[key];
 
-    console.log(typeof (DecksDets))
     if (typeof (DecksDets) === 'undefined') {
-      return(
+      return (
         <View>
-          
-      <TouchableOpacity onPress={() => this.toHome}>
-        <Text>Home</Text>
-        </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => this.toHome}>
+            <Text>something went wrong please try again</Text>
+          </TouchableOpacity>
 
         </View>
       )
@@ -48,11 +43,11 @@ class Deck extends Component {
 
     return (
       <View styles={styles.container}>
-        
+
         <Text style={styles.txt}> {DecksDets.name}</Text>
         <Text style={styles.txt}>{DecksDets.questions.length}</Text>
         <TouchableOpacity
-        style={styles.AndroidSubmitBtn}
+          style={styles.AndroidSubmitBtn}
           onPress={() =>
             navigation.push('carAdd', {
               DecksAdd: DecksDets,
@@ -60,21 +55,21 @@ class Deck extends Component {
           }>
           <Text style={styles.submitBtnText}>Add card</Text>
         </TouchableOpacity>
-          <View>
-        <TouchableOpacity
-        style={styles.AndroidSubmitBtn}
-          onPress={() =>
-            navigation.push('quiz', {
-              DecksQuiz: DecksDets,
-            })
-          }>
-          <Text style={styles.submitBtnText}>Start Quiz</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            style={styles.AndroidSubmitBtn}
+            onPress={() =>
+              navigation.push('quiz', {
+                DecksQuiz: DecksDets,
+              })
+            }>
+            <Text style={styles.submitBtnText}>Start Quiz</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={this.Delete}>
+        <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={this.delete}>
           <Text style={styles.submitBtnText}>Delete Deck</Text>
         </TouchableOpacity>
-        
+
       </View>
     );
   }
@@ -94,25 +89,25 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'white'
   },
-txt:{
-  color:"#841584",
-  // backgroundColor:'gray',
-  fontSize: 22,
-  textAlign: 'center',
-}, 
+  txt: {
+    color: "#841584",
+    // backgroundColor:'gray',
+    fontSize: 22,
+    textAlign: 'center',
+  },
   AndroidSubmitBtn: {
     backgroundColor: 'blue',
-    color:"#841584",
+    color: "#841584",
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    width:250,
+    width: 250,
     margin: 20
   },
- submitBtnText: {
+  submitBtnText: {
     color: 'white',
     fontSize: 22,
     textAlign: 'center',
   },
- 
+
 })

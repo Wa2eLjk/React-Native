@@ -4,7 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,Alert
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
@@ -19,6 +19,11 @@ class AddCard extends Component {
     textAnswer:'',
   }
   submit = (DeckDeetails) => {
+    if (this.state.textQuestion ==='' || this.state.textAnswer === '') {
+      Alert.alert('You must enter a value in question AND answer')
+    }else{
+
+    
    let entry ={}
    entry['questiontxt'] = this.state.textQuestion
    entry['answer'] = this.state.textAnswer
@@ -31,7 +36,7 @@ class AddCard extends Component {
      }))
      submitQuestions({key,entry})
    this.toDeck()
- 
+  }
   }
   toDeck = () => {
     this.props.navigation.dispatch(NavigationActions.navigate({
@@ -41,11 +46,11 @@ class AddCard extends Component {
   }
   render() {
     
-    const DeckDeetails = this.props.navigation.state.params.DecksAdd;
+    const deckDeetails = this.props.navigation.state.params.DecksAdd;
     
     return (
       <View >
-        <Text style={styles.txt}>your key is : {DeckDeetails.name}</Text>
+        <Text style={styles.txt}>your key is : {deckDeetails.name}</Text>
 
         <TextInput
           onChangeText={(textQuestion) => this.setState({textQuestion})}
@@ -62,7 +67,7 @@ class AddCard extends Component {
 
         <TouchableOpacity
           style={styles.AndroidSubmitBtn}
-          onPress={() => this.submit(DeckDeetails)}>
+          onPress={() => this.submit(deckDeetails)}>
           
           <Text style={styles.submitBtnText}>Submit</Text>
         </TouchableOpacity>

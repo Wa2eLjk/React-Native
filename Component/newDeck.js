@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
   TouchableOpacity,
@@ -8,9 +7,9 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-import { submitDeck, fetchEntry, removeall } from './Utliz/api';
+import { submitDeck, removeDeck, removeall } from '../Utliz/api';
 import { connect } from 'react-redux';
-import { addDeck, recieveEntry } from './actions/index';
+import { addDeck, removeSdeck } from '../actions/index';
 import {NavigationActions } from 'react-navigation';
 
 class HomeScreen extends Component {
@@ -35,14 +34,21 @@ class HomeScreen extends Component {
     }));
     this.toHome()
   };
+  handleDelete(obj) {
+    this.props.dispatch(removeSdeck(obj))
+    removeDeck(obj)
+}
   toHome = () =>{
+    
     this.props.navigation.dispatch(NavigationActions.navigate({
-      routeName:'Home'
+      routeName:'Details',
+      params:{
+      Details: {name:this.state.name, questions:[]},
+      Dele:  this.handleDelete.bind(this)
+    }
     }))
   }
-  removeall = () => {
-    removeall()
-  }
+
   render() {
     
     return (

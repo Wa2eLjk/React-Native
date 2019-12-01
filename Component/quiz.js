@@ -1,9 +1,7 @@
 import React, { Component, } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Alert, ScrollView } from 'react-native';
-import { setLocalNotfication, clearLocalNotifcation } from './notifi'
-import { connect } from 'react-redux'
-import { recieveEntry } from '../actions/index'
-import { fetchEntry } from '../Utliz/api';
+import { setLocalNotfication, clearLocalNotifcation } from '../Utliz/notifi'
+
 
 
 class Quiz extends Component {
@@ -17,9 +15,7 @@ class Quiz extends Component {
 
   }
   componentDidMount() {
-    // const DeckDeetails = this.props.navigation.state.params.DecksQuiz.questions.length;
-    // const myArray = DeckDeetails.questions
-    // const Total = myArray.length
+    
 
     this.setState(() => ({
       all: this.props.navigation.state.params.DecksQuiz.questions.length
@@ -64,8 +60,7 @@ class Quiz extends Component {
   }
 
   render() {
-    console.log('All',this.state.all)
-    console.log('Current',this.state.current)
+    
     const time = new Date().setHours(20, 0, 0)
     if (this.state.notifi === true && time === true) {
       setLocalNotfication()
@@ -75,13 +70,13 @@ class Quiz extends Component {
       clearLocalNotifcation()
     }
 
-    const DeckDeetails = this.props.navigation.state.params.DecksQuiz;
-    const myArray = DeckDeetails.questions[this.state.current]
+    const deckDeetails = this.props.navigation.state.params.DecksQuiz;
+    const myArray = deckDeetails.questions[this.state.current]
     
 
 
 
-    if (typeof (DeckDeetails) === 'undefined') {
+    if (!deckDeetails) {
       return (
         <View>
           <Text>Please add Cards to your decks its empty</Text>
@@ -95,6 +90,9 @@ class Quiz extends Component {
           <Text style={styles.txtQ}> you are done u scored {this.state.correctAnswer} out of {this.state.all}</Text>
           <TouchableOpacity style={styles.AndroidBtn} onPress={this.reset} >
             <Text style={styles.submitBtnText}>Reset Answers</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.AndroidBtn} onPress={() => this.props.navigation.navigate('Details')} >
+            <Text style={styles.submitBtnText}>Go Back</Text>
           </TouchableOpacity>
         </View>
       )

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import homeScreen from './Component/homeScreen';
-import newDeck from './newDeck';
+import newDeck from './Component/newDeck';
 import {createStore} from 'redux'
 import reducer from './reducers'
 import {Provider} from 'react-redux'
