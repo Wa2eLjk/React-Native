@@ -32,13 +32,13 @@ class HomeScreen extends Component {
       name: '',
       questions: [],
     }));
-    this.toHome()
+    this.toDeck()
   };
   handleDelete(obj) {
     this.props.dispatch(removeSdeck(obj))
     removeDeck(obj)
 }
-  toHome = () =>{
+  toDeck = () =>{
     
     this.props.navigation.dispatch(NavigationActions.navigate({
       routeName:'Details',
